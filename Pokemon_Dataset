@@ -53,5 +53,27 @@ print('-' * 80)
 print(df.iloc[3,1])
 
 # ===================================================================================================
+## Desrcibe/sorting data
+
+df.describe()   # find the mean, std - numeric data
+
+df.sort_values(df['Name']) # (or) df.sort_values(df['Name'], ascending = True)
+df.sort_values(df['Type 1','HP'], ascending = [1, 0])
+
+
+## Making Changes into the data
+df['Total'] = df['HP'] + df['Attack'] + ... + df['Speed']
+
+df = df.drop(column = ['Total'])
+
+df['total'] = df.iloc[:,4:10].sum()
+
+# one way to rearranging the columns as per wish
+cols = list(df.columns)
+df = df[cols[0:4] + [cols[-1]] + cols[4:11]]
+
+
+# ===================================================================================================
+
 
 
