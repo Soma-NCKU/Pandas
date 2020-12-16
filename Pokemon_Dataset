@@ -1,0 +1,57 @@
+## Pandas Tutorial
+
+"""
+Using Pokemon Dataset:Example - 1
+"""
+
+## Loading different types of data into Pandas and observe the change
+
+import pandas as pd
+
+# csv format
+df = pd.read_csv('pokemon_data.csv')   
+print(df.tail(3))
+
+# xlsx format
+#df_xlsx = pd.read_excel('pokemon_data.xlsx')
+#print(df.tail(3))
+
+
+# txt format
+#df_txt = pd.read_csv('pokemon_data.txt', delimiter = '\t')
+#print(df.head(3))
+
+# ===================================================================================================
+## Read headers
+
+print(df.columns)
+print('-'* 80)
+
+## Read each column
+
+print(df['Name'].head(3))  # (or) print(df.Name)
+print('-'* 80)
+
+print(df[['Name','Type 1', 'HP']].head(3))
+print('-'* 80)
+
+## Read each row
+
+print(df.iloc[:4, :5])
+print('-'* 80)
+
+for index, row in df.iterrows():
+    print(index, row['Name'])
+
+print('-'* 80)
+
+print(df.loc[df['Type 1'] == 'Fire'])
+print('-' * 80)
+
+## Read a specific location (R,C)
+
+print(df.iloc[3,1])
+
+# ===================================================================================================
+
+
