@@ -3,7 +3,7 @@
 """
 Using Pokemon Dataset:Example - 1
 """
-
+# Part - 1 (Basics)
 ## Loading different types of data into Pandas and observe the change
 
 import pandas as pd
@@ -72,8 +72,17 @@ df['total'] = df.iloc[:,4:10].sum()
 cols = list(df.columns)
 df = df[cols[0:4] + [cols[-1]] + cols[4:11]]
 
+# ===================================================================================================
+## saving the modofied data in three different format
+df.to_csv('modified.csv') # (or) df.to_csv('modified.csv', index = False)
+
+df.to_excel('modified.xlsx', index = False)
+
+df.to_csv('modified.txt', index = False, sep = '\t')
 
 # ===================================================================================================
 
+# Part - 2 (More adavnce function)
+# Filtering data
 
 
