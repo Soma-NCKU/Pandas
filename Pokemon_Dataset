@@ -85,4 +85,80 @@ df.to_csv('modified.txt', index = False, sep = '\t')
 # Part - 2 (More adavnce function)
 # Filtering data
 
+new_df = df.loc[(df['Type 1'] == 'Grass') & (df['Type 2'] == 'Poison') & (df['HP'] > 70)]
+
+new_df.to_csv('filtered')
+
+new_df.reset_index()
+
+new_df.reset_index(drop = True, inplace = True)
+
+# contain delection - eg mega
+
+df.loc[df.Name.str.contains('Mega')]
+
+# now to delete the name contain mega use ~
+
+df.loc[~ df.Name.str.contains('Mega')]
+
+# Some complicated filtering - using re (regular experssion)
+
+import re
+
+df.loc[df['Type 1'].str.contains('fire|grass', regex = True)]  # Observe the change
+
+df.loc[df['Type 1'].str.contains('Fire|Grass', regex = True)]
+
+# ignoring the capatiliztaion
+
+df.loc[df['Type 1'].str.contains('fire|grass', flags = re.I, regex = True)]
+
+df.loc[df['Name'].str.contains('pi[a-z]*', flags = re.I, regex = True)]
+
+df.loc[df['Name'].str.contains('pi[a-z]*', flags = re.I, regex = True)]
+
+# ===================================================================================================
+
+# Conditioning Changes
+
+df.loc[df['Type 1'] == 'Fire', 'Type 1'] = 'Flamer'
+
+df.loc[df['Type 1'] == 'Flamer', 'Type 1'] == 'Fire' # change back to fire
+
+df.loc[df['Type'] > 500 , [Generation, Legendary]] = 'Test Value'
+
+df.loc[df['Type 1'] == 'Fire' , ['Generation', 'Legendary']] = 'Test Value'
+
+df.loc[df['Type 1'] == 'Fire' , ['Generation', 'Legendary']] = ['Test 1', 'Test 2']
+
+# load the modified check data
+
+df.loc[df['Total'] > 500 , ['Generation, 'legendary']] = 'Test value'
+
+# ===================================================================================================
+
+# Aggregate Statistics (Groupby)  - use .groupby function
+
+df.groupby(['Type 1']).mean()
+
+df.groupby(['Type 1']).mean().sort_values('Defense', ascending = False)
+
+df.groupby(['Type 1']).sum()  # one must knows the reason they they use to use this function
+
+df.groupby(['Type 1']).count()
+
+# add a column on the df 
+df['count'] = 1  # 1 is default value as we cant create a empty col
+
+df.groupby(['Type 1']).count()
+
+df.groupby(['Type 1']).count()['count']
+
+df.groupby(['Type 1', 'Type 2']).count()['count']  # group by multiple parameter
+
+# ===================================================================================================
+
+# Working with large amounts of data
+
+59:00mins
 
